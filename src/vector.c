@@ -52,3 +52,10 @@ void vector_add(vector_t *restrict vec, void *restrict item) {
     vec->data[vec->size - 1] = item;
 
 }
+
+void vector_destroy(vector_t* vec) {
+
+    free(vec->data);
+    free(vec);
+
+}
