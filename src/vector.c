@@ -14,3 +14,7 @@ vector_t* vector_init() {
 int vector_size(const vector_t* vec) {
     return vec->size;
 }
+
+int vector_capacity(const vector_t* vec) {
+    return vec->capacity;
+}
