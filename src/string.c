@@ -3,7 +3,7 @@
 #include "include/vector.h"
 #include "include/string.h"
 
-string_t* string_from(int len, char str[]) {
+string_t* string_from(int len, const char str[]) {
     string_t* string = string_init();
 
     for (int i = 0; i < len; i++) {
