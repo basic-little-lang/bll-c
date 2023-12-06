@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include "include/vector.h"
 #include "include/string.h"
@@ -40,6 +41,17 @@ void string_add(string_t *restrict str, char chr) {
 
 void string_remove(string_t* str, int index) {
     free(vector_remove(str, index));
+}
+
+void string_print(const string_t* str) {
+    for (int i = 0; i < string_size(str); i++) {
+        printf("%c", *string_get(str, i));
+    }
+}
+
+void string_println(const string_t *str) {
+    string_print(str);
+    printf("\n");
 }
 
 void string_destory(string_t* str) {
