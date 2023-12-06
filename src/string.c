@@ -38,8 +38,8 @@ void string_add(string_t *restrict str, char chr) {
     vector_add(str, heap_char);
 }
 
-char* string_remove(string_t* str, int index) {
-    return (char*) vector_remove(str, index);
+void string_remove(string_t* str, int index) {
+    free(vector_remove(str, index));
 }
 
 void string_destory(string_t* str) {
