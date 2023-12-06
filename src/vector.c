@@ -18,3 +18,7 @@ int vector_size(const vector_t* vec) {
 int vector_capacity(const vector_t* vec) {
     return vec->capacity;
 }
+
+void** vector_data(const vector_t* vec) {
+    return vec->data;
+}
