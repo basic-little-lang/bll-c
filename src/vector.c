@@ -22,3 +22,9 @@ int vector_capacity(const vector_t* vec) {
 void** vector_data(const vector_t* vec) {
     return vec->data;
 }
+
+void* vector_get(const vector_t* vec, int index) {
+    if (index < 0 || index >= vector_size(vec)) return NULL;
+
+    return vec->data[index];
+}
