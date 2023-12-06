@@ -4,6 +4,9 @@
 
 #include "vector.h"
 
+typedef vector_t string_t;
+
+string_t* string_init();
 
 
 #endif
