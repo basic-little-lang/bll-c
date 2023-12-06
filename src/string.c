@@ -4,3 +4,7 @@
 string_t* string_init() {
     return vector_init();
 }
+
+void string_destory(string_t* str) {
+    vector_destroy(str);
+}
