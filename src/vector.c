@@ -53,6 +53,22 @@ void vector_add(vector_t *restrict vec, void *restrict item) {
 
 }
 
+void* vector_remove(vector_t* vec, int index) {
+
+    if (index < 0 || index >= vector_size(vec)) return NULL;
+
+    void* return_val = vector_get(vec, index);
+
+    for (int i = index; i < vector_size(vec) - 1; i++) {
+        vec->data[i] = vec->data[i + 1];
+    }
+
+    vec->data[vector_size(vec) - 1] = NULL;
+    vec->size = vec->size - 1;
+
+    return return_val;
+}
+
 void vector_destroy(vector_t* vec) {
 
     free(vec->data);
