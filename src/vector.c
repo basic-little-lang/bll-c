@@ -10,3 +10,7 @@ vector_t* vector_init() {
 
     return vec;
 }
+
+int vector_size(const vector_t* vec) {
+    return vec->size;
+}
