@@ -1,26 +1,30 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include <string.h>
+#include "include/string.h"
 #include "include/vector.h"
 
-int main() {
+int main(int argc, char const *argv[]) {
     
-    vector_t* vec = vector_init();
+    vector_t* args = vector_init();
 
-    for (int i = 0; i < 12; i++) {
-        int *num = malloc(sizeof(int));
-        *num = i + 1;
-        vector_add(vec, num);
-    }
-
-    free(vector_remove(vec, 6));
-    printf("%d and %d\n", vector_size(vec), vector_capacity(vec));
-
-    for (int i = 0; i < vector_size(vec); i++) {
-        printf("%d\n", *((int*) vector_get(vec, i)));
-        free(vector_get(vec, i));
+    for (int i = 0; i < argc; i++) {
+        vector_add(args, string_from((int) strlen(argv[i]), argv[i]));
     }
 
 
-    vector_destroy(vec);
 
+    for (int i = 0; i < vector_size(args); i++) {
+        string_print(vector_get(args, i));
+        printf(" ");
+    }
+    printf("\n");
+
+
+
+    for (int i = 0; i < vector_size(args); i++) {
+        string_destory(vector_get(args, i));
+    }
+    vector_destroy(args);
+
+    return 0;
 }
