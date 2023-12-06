@@ -6,6 +6,7 @@
 
 typedef vector_t string_t;
 
+string_t* string_from(int len, char str[]);
 string_t* string_init();
 int string_size(const string_t* str);
 int string_capacity(const string_t* str);
