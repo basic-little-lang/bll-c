@@ -3,7 +3,7 @@
 #define _COLOR_H_
 
 #include <stdbool.h>
-#include "string.h";
+#include "string.h"
 
 typedef enum text_color {
     TEXT_COLOR_FOREGROUND_BLACK,
