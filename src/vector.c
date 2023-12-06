@@ -28,3 +28,27 @@ void* vector_get(const vector_t* vec, int index) {
 
     return vec->data[index];
 }
+
+void vector_add(vector_t *restrict vec, void *restrict item) {
+    if ((vector_size(vec) + 1) > vector_capacity(vec)) {
+        
+        void** old_data = vector_data(vec);
+        int old_capacity = vec->capacity;
+        int old_size = vec->size;
+
+        vec->capacity = old_capacity * 2;
+        vec->data = malloc(sizeof(void*) * vec->capacity);
+
+        for (int i = 0; i < old_size; i++) {
+            vec->data[i] = old_data[i];
+        }
+
+        free(old_data);
+
+    }
+
+    vec->size += 1;
+
+    vec->data[vec->size - 1] = item;
+
+}
