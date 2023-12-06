@@ -5,7 +5,7 @@
 #include <stdbool.h>
 #include "string.h";
 
-enum TextColor {
+typedef enum text_color {
     TEXT_COLOR_FOREGROUND_BLACK,
     TEXT_COLOR_FOREGROUND_RED,
     TEXT_COLOR_FOREGROUND_GREEN,
@@ -45,11 +45,11 @@ enum TextColor {
     TEXT_COLOR_BOLD,
     TEXT_COLOR_ITALIC,
     TEXT_COLOR_UNDERLINE,
-};
+} text_color_t;
 
-string_t* color_to_string(TextColor color);
-string_t* format_color(string_t* string, TextColor color);
-bool is_foreground(TextColor color);
-unsigned short code_for_color(TextColor color);
+string_t* color_to_string(text_color_t color);
+string_t* format_color(string_t* string, text_color_t color);
+bool is_foreground(text_color_t color);
+unsigned short code_for_color(text_color_t color);
 
 #endif
