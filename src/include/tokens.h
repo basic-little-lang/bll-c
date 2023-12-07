@@ -30,6 +30,6 @@ token_t* token_char_init(char data);
 token_type_t token_type(const token_t* token);
 string_t* token_string(const token_t* token);
 void* token_data(const token_t* token);
-void token_destory(const token_t* token);
+void token_destory(token_t* token);
 
 #endif

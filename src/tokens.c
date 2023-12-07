@@ -28,3 +28,15 @@ token_type_t token_type(const token_t* token) {
 void* token_data(const token_t* token) {
     return token->data;
 }
+
+void token_destory(token_t* token) {
+    switch (token_type(token)) {
+        case TOKEN_TYPE_CHAR:
+            free(token->data);
+            free(token);
+            break;
+        default:
+            free(token);
+            break;
+    }
+}
