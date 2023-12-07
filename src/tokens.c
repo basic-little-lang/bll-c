@@ -24,3 +24,7 @@ token_t* token_char_init(char data) {
 token_type_t token_type(const token_t* token) {
     return token->token_type;
 }
+
+void* token_data(const token_t* token) {
+    return token->data;
+}
