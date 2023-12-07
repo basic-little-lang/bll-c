@@ -4,6 +4,6 @@
 
 #include "string.h"
 
-string_t* files_read_file_to_string(string_t* file_name);
+string_t* files_read_file_to_string(const string_t* file_name);
 
 #endif

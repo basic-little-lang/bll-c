@@ -2,9 +2,15 @@
 #include "include/string.h"
 #include "include/files.h"
 
-string_t* files_read_file_to_string(string_t* file_name) {
+string_t* files_read_file_to_string(const string_t* file_name) {
 
-    FILE* file = fopen(*string_data(file_name), "r");
+    char c_filename_str[string_size(file_name) + 1];
+    for (int i = 0; i < string_size(file_name); i++) {
+        c_filename_str[i] = *string_get(file_name, i);
+    }
+    c_filename_str[string_size(file_name)] = '\0';
+
+    FILE* file = fopen(c_filename_str, "r");
     if (file == NULL) return NULL;
 
     string_t* contents = string_init();
@@ -15,6 +21,8 @@ string_t* files_read_file_to_string(string_t* file_name) {
     }
 
     fclose(file);
+
+    string_add(contents, '\n');
 
     return contents;
 }
