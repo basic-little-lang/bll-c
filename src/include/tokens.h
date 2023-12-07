@@ -18,4 +18,9 @@ typedef enum {
 
 extern const char TOKEN_COMMENT_CHAR;
 
+typedef struct {
+    token_type_t token_type;
+    void* data;
+} token_t;
+
 #endif
