@@ -47,9 +47,9 @@ typedef enum text_color {
     TEXT_COLOR_UNDERLINE,
 } text_color_t;
 
-string_t* color_to_string(text_color_t color);
-string_t* format_color(string_t* string, text_color_t color);
-bool is_foreground(text_color_t color);
-unsigned short code_for_color(text_color_t color);
+string_t* color_color_to_string(text_color_t color);
+string_t* color_format_color(string_t* string, text_color_t color);
+bool color_is_foreground(text_color_t color);
+unsigned short color_code_for_color(text_color_t color);
 
 #endif

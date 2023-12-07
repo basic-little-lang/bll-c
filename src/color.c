@@ -1,6 +1,46 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <string.h>
+#include "include/string.h"
 #include "include/color.h"
 
-unsigned short code_for_color(text_color_t color) {
+string_t* color_color_to_string(text_color_t color) {
+    unsigned short code = color_code_for_color(color);
+    bool is_foreground = color_is_foreground(color);
+
+    string_t* string = string_init();
+    char str[8];
+    sprintf(str, "%d", code);
+    string_t* color_code_str = string_from(strlen(str), str);
+
+    if (is_foreground) {
+        string_add(string, '\033');
+        string_add(string, '[');
+        for (int i = 0; i < string_size(color_code_str); i++) {
+            string_add(string, *string_get(color_code_str, i));
+        }
+        string_add(string, 'm');
+    } else {
+        string_add(string, '\033');
+        string_add(string, '[');
+        string_add(string, ';');
+        for (int i = 0; i < string_size(color_code_str); i++) {
+            string_add(string, *string_get(color_code_str, i));
+        }
+        string_add(string, 'm');
+    }
+
+    string_destory(color_code_str);
+    return string;
+}
+
+bool color_is_foreground(text_color_t color) {
+    unsigned short code = color_code_for_color(color);
+
+    return (code >= 30 && code <= 97);
+}
+
+unsigned short color_code_for_color(text_color_t color) {
 
     switch (color) {
         case TEXT_COLOR_FOREGROUND_BLACK:
