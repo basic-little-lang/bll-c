@@ -24,7 +24,7 @@ args_t* args_build(const vector_t* args) {
 
 void args_destroy(args_t* args) {
     if (args->file_name != NULL) {
-        free(args->file_name);
+        string_destory(args->file_name);
     }
     free(args);
 }
