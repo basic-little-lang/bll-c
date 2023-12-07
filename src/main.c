@@ -2,6 +2,7 @@
 #include <string.h>
 #include "include/string.h"
 #include "include/vector.h"
+#include "include/color.h"
 
 int main(int argc, char const *argv[]) {
     
@@ -14,7 +15,7 @@ int main(int argc, char const *argv[]) {
 
 
     for (int i = 0; i < vector_size(args); i++) {
-        string_print(vector_get(args, i));
+        color_print_color(vector_get(args, i), TEXT_COLOR_FOREGROUND_LIGHT_MAGENTA);
         printf(" ");
     }
     printf("\n");
