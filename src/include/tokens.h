@@ -16,4 +16,6 @@ typedef enum {
     WHITESPACE,
 } token_type_t;
 
+extern const char TOKEN_COMMENT_CHAR;
+
 #endif
