@@ -4,9 +4,29 @@
 #include "include/string.h"
 #include "include/color.h"
 
+void color_print_color(const string_t* string, text_color_t color) {
+    string_t* str = color_format_color(string, color);
+
+    string_print(str);
+
+    string_destory(str);
+}
+
+void color_println_color(const string_t* string, text_color_t color) {
+    string_t* str = color_format_color(string, color);
+
+    string_println(str);
+
+    string_destory(str);
+}
+
 string_t* color_format_color(const string_t* string, text_color_t color) {
     string_t* color_str = color_color_to_string(color);
-    string_t* str = string_from(string_size(color_str), *string_data(color_str));
+    string_t* str = string_init();
+
+    for (int i = 0; i < string_size(color_str); i++) {
+        string_add(str, *string_get(color_str, i));
+    }
 
     for (int i = 0; i < string_size(string); i++) {
         string_add(str, *string_get(string, i));
@@ -34,22 +54,17 @@ string_t* color_color_to_string(text_color_t color) {
     sprintf(str, "%d", code);
     string_t* color_code_str = string_from(strlen(str), str);
 
-    if (is_foreground) {
-        string_add(string, '\033');
-        string_add(string, '[');
-        for (int i = 0; i < string_size(color_code_str); i++) {
-            string_add(string, *string_get(color_code_str, i));
-        }
-        string_add(string, 'm');
-    } else {
-        string_add(string, '\033');
-        string_add(string, '[');
+    string_add(string, '\033');
+    string_add(string, '[');
+
+    if (!is_foreground) {
         string_add(string, ';');
-        for (int i = 0; i < string_size(color_code_str); i++) {
-            string_add(string, *string_get(color_code_str, i));
-        }
-        string_add(string, 'm');
     }
+    
+    for (int i = 0; i < string_size(color_code_str); i++) {
+        string_add(string, *string_get(color_code_str, i));
+    }
+    string_add(string, 'm');
 
     string_destory(color_code_str);
     return string;

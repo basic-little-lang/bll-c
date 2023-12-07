@@ -49,8 +49,8 @@ typedef enum text_color {
 
 string_t* color_color_to_string(text_color_t color);
 string_t* color_format_color(const string_t* string, text_color_t color);
-string_t* color_print_color(const string_t* string, text_color_t color);
-string_t* color_println_color(const string_t* string, text_color_t color);
+void color_print_color(const string_t* string, text_color_t color);
+void color_println_color(const string_t* string, text_color_t color);
 bool color_is_foreground(text_color_t color);
 unsigned short color_code_for_color(text_color_t color);
 
