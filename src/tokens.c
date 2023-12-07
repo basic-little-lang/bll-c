@@ -10,3 +10,7 @@ token_t* token_base_init(token_type_t type) {
 
     return token;
 }
+
+token_type_t token_type(const token_t* token) {
+    return token->token_type;
+}
