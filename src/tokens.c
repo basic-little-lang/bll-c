@@ -25,6 +25,85 @@ token_type_t token_type(const token_t* token) {
     return token->token_type;
 }
 
+string_t* token_string(const token_t* token) {
+    switch (token_type(token)) {
+        case TOKEN_TYPE_CHAR:
+            {
+                string_t* str = string_from(5, "CHAR(");
+                string_add(str, *((char*) token_data(token)));
+                string_add(str, ')');
+                return str;
+            }
+            break;
+        case TOKEN_TYPE_ADD:
+            {
+                string_t* str = string_from(3, "ADD");
+                return str;
+            }
+            break;
+        case TOKEN_TYPE_SUBTRACT:
+            {
+                string_t* str = string_from(8, "SUBTRACT");
+                return str;
+            }
+            break;
+        case TOKEN_TYPE_DIVIDE:
+            {
+                string_t* str = string_from(6, "DIVIDE");
+                return str;
+            }
+            break;
+        case TOKEN_TYPE_MULTIPLIE:
+            {
+                string_t* str = string_from(9, "MULTIPLIE");
+                return str;
+            }
+            break;
+        case TOKEN_TYPE_MODULO:
+            {
+                string_t* str = string_from(6, "MODULO");
+                return str;
+            }
+            break;
+        case TOKEN_TYPE_POWER:
+            {
+                string_t* str = string_from(5, "POWER");
+                return str;
+            }
+            break;
+        case TOKEN_TYPE_EQUAL:
+            {
+                string_t* str = string_from(5, "EQUAL");
+                return str;
+            }
+            break;
+        case TOKEN_TYPE_NEGITIVE:
+            {
+                string_t* str = string_from(8, "NEGITIVE");
+                return str;
+            }
+            break;
+        case TOKEN_TYPE_POINT:
+            {
+                string_t* str = string_from(5, "POINT");
+                return str;
+            }
+            break;
+        case TOKEN_TYPE_WHITESPACE:
+            {
+                string_t* str = string_from(10, "WHITESPACE");
+                return str;
+            }
+            break;
+        default:
+            {
+                string_t* str = string_init();
+                return str;
+            }
+            break;
+    }
+}
+
 void* token_data(const token_t* token) {
     return token->data;
 }
