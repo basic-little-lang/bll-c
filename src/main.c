@@ -60,7 +60,7 @@ int main(int argc, char const *argv[]) {
         goto exit_args;
     }
 
-    string_println(contents);
+
 
     string_destory(contents);
 
