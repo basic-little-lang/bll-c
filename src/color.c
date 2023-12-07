@@ -4,6 +4,27 @@
 #include "include/string.h"
 #include "include/color.h"
 
+string_t* color_format_color(const string_t* string, text_color_t color) {
+    string_t* color_str = color_color_to_string(color);
+    string_t* str = string_from(string_size(color_str), *string_data(color_str));
+
+    for (int i = 0; i < string_size(string); i++) {
+        string_add(str, *string_get(string, i));
+    }
+
+    string_destory(color_str);
+
+    string_t* reset_str = color_color_to_string(TEXT_COLOR_RESET);
+
+    for (int i = 0; i < string_size(reset_str); i++) {
+        string_add(str, *string_get(reset_str, i));
+    }
+
+    string_destory(reset_str);
+
+    return str;
+}
+
 string_t* color_color_to_string(text_color_t color) {
     unsigned short code = color_code_for_color(color);
     bool is_foreground = color_is_foreground(color);
