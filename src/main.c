@@ -4,6 +4,7 @@
 #include "include/vector.h"
 #include "include/string.h"
 #include "include/args.h"
+#include "include/files.h"
 
 int main(int argc, char const *argv[]) {
 
@@ -40,6 +41,28 @@ int main(int argc, char const *argv[]) {
         exit_code = -1;
         goto exit_args;
     }
+
+    string_t* contents = files_read_file_to_string(args->file_name);
+    if (contents == NULL) {
+        string_t* error_str = string_from(5, "error");
+        string_t* error_color_str = color_format_color(error_str, TEXT_COLOR_FOREGROUND_LIGHT_RED);
+        string_t* error_color_bold_str = color_format_color(error_color_str, TEXT_COLOR_BOLD);
+
+        string_print(error_color_bold_str);
+        printf(": Cannot open file: ");
+
+        string_println(args->file_name);
+
+        string_destory(error_str);
+        string_destory(error_color_str);
+        string_destory(error_color_bold_str);
+        exit_code = -1;
+        goto exit_args;
+    }
+
+    string_println(contents);
+
+    string_destory(contents);
 
     exit_args:
         
