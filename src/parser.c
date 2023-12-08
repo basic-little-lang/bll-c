@@ -43,3 +43,19 @@ parser_token_type_t parser_token_type(const parser_token_t* parser_token) {
 void* parser_token_data(const parser_token_t* parser_token) {
     return parser_token->data;
 }
+
+void parser_token_destory(parser_token_t* parser_token) {
+    switch (parser_token_type(parser_token)) {
+        case PARSER_TOKEN_TYPE_NUMBER:
+            free(parser_token->data);
+            free(parser_token);
+            break;
+        case PARSER_TOKEN_TYPE_VAR:
+            string_destory(parser_token->data);
+            free(parser_token);
+            break;
+        default:
+            free(parser_token);
+            break;
+    }
+}
