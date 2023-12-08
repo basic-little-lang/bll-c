@@ -3,6 +3,7 @@
 #include <string.h>
 #include "include/vector.h"
 #include "include/string.h"
+#include "include/tokens.h"
 #include "include/parser.h"
 
 parser_token_t* parser_token_base_init(parser_token_type_t token_type) {
@@ -144,6 +145,7 @@ vector_t* parser_convert(const vector_t* direct_tokens) {
     vector_t* buffer = vector_init();
 
     for (int i = 0; i < vector_size(direct_tokens); i++) {
+        token_t* token = vector_get(direct_tokens, i);
 
         
 
