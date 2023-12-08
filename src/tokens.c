@@ -119,3 +119,9 @@ void token_destory(token_t* token) {
             break;
     }
 }
+
+vector_t* token_tokenize_string(string_t* str) {
+
+    
+
+}
