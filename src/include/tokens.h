@@ -2,6 +2,7 @@
 #ifndef _TOKENS_H_
 #define _TOKENS_H_
 
+#include "vector.h"
 #include "string.h"
 
 typedef enum {
@@ -31,5 +32,7 @@ token_type_t token_type(const token_t* token);
 string_t* token_string(const token_t* token);
 void* token_data(const token_t* token);
 void token_destory(token_t* token);
+
+vector_t* token_tokenize_string(string_t* str);
 
 #endif
