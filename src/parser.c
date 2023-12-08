@@ -39,3 +39,7 @@ parser_token_t* parser_token_var_init(const string_t* data) {
 parser_token_type_t parser_token_type(const parser_token_t* parser_token) {
     return parser_token->token_type;
 }
+
+void* parser_token_data(const parser_token_t* parser_token) {
+    return parser_token->data;
+}
