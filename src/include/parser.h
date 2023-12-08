@@ -2,6 +2,8 @@
 #ifndef _PARSER_H_
 #define _PARSER_H_
 
+#include "string.h"
+
 typedef enum {
     PARSER_TOKEN_ADD,
     PARSER_TOKEN_SUBTRACT,
@@ -20,5 +22,13 @@ typedef struct {
     parser_token_type_t token_type;
     void* data;
 } parser_token_t;
+
+parser_token_t* parser_token_base_init(parser_token_type_t token_type);
+parser_token_t* parser_token_number_init(double data);
+parser_token_t* parser_token_var_init(const string_t* data);
+parser_token_type_t parser_token_type(const parser_token_t* parser_token);
+void* parser_token_data(const parser_token_t* parser_token);
+string_t* parser_token_string(const parser_token_t* parser_token);
+void parser_token_destory(parser_token_t* parser_token);
 
 #endif
