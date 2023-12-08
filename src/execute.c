@@ -477,14 +477,36 @@ bool execute_execute(const vector_t* tokens) {
                         string_print(key);
                         double* p = vars_get(vars, key);
                         if (p == NULL) {
-                            printf(" = 0\n");
+                            printf(" = %.16lf\n", 0.0);
                         } else {
-                            printf(" = %lf\n", *p);
+                            printf(" = %.16lf\n", *p);
                         }
                     } else {
                         vars_destory(vars);
                         return false;
                     }
+
+                }
+                break;
+            case PARSER_TOKEN_TYPE_COPY:
+                {
+                    if (next_token == NULL) {
+                        vars_destory(vars);
+                        return false;
+                    }
+
+                    int next_two_index = i + 2;
+
+                    parser_token_t* next_two_token;
+
+                    if (!(next_two_index < vector_size(tokens))) {
+                        vars_destory(vars);
+                        return false;
+                    } else {
+                        next_two_token = vector_get(tokens, next_two_index);
+                    }
+
+                    vars_update_or_insert(vars, parser_token_data(next_two_token), *vars_get(vars, parser_token_data(next_token)));
 
                 }
                 break;
