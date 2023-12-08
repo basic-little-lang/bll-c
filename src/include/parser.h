@@ -16,4 +16,9 @@ typedef enum {
     PARSER_TOKEN_VAR,
 } parser_token_type_t;
 
+typedef struct {
+    parser_token_type_t token_type;
+    void* data;
+} parser_token_t;
+
 #endif
