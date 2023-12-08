@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "include/color.h"
+#include "include/tokens.h"
 #include "include/vector.h"
 #include "include/string.h"
 #include "include/args.h"
@@ -60,9 +61,40 @@ int main(int argc, char const *argv[]) {
         goto exit_args;
     }
 
+    vector_t* direct_tokens = token_tokenize_string(contents);
+    if (direct_tokens == NULL) {
+        string_t* error_str = string_from(5, "error");
+        string_t* error_color_str = color_format_color(error_str, TEXT_COLOR_FOREGROUND_LIGHT_RED);
+        string_t* error_color_bold_str = color_format_color(error_color_str, TEXT_COLOR_BOLD);
+
+        string_print(error_color_bold_str);
+        printf(": Cannot parse file into direct tokens\n");
+
+        string_destory(error_str);
+        string_destory(error_color_str);
+        string_destory(error_color_bold_str);
+        exit_code = -1;
+        goto exit_contents;
+    }
 
 
-    string_destory(contents);
+
+    for (int i = 0; i < vector_size(direct_tokens); i++) {
+        string_t* str = token_string(vector_get(direct_tokens, i));
+        string_println(str);
+        string_destory(str);
+    }
+
+
+
+    for (int i = 0; i < vector_size(direct_tokens); i++) {
+        token_destory(vector_get(direct_tokens, i));
+    }
+    vector_destroy(direct_tokens);
+
+    exit_contents:
+
+        string_destory(contents);
 
     exit_args:
         
