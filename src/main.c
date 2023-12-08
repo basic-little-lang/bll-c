@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdbool.h>
 #include "include/color.h"
+#include "include/execute.h"
 #include "include/parser.h"
 #include "include/tokens.h"
 #include "include/vector.h"
@@ -95,10 +97,19 @@ int main(int argc, char const *argv[]) {
         goto exit_tokens;
     }
 
-    for (int i = 0; i < vector_size(tokens); i++) {
-        string_t* str = parser_token_string(vector_get(tokens, i));
-        string_println(str);
-        string_destory(str);
+    bool success = execute_execute(tokens);
+    if (!success) {
+        string_t* error_str = string_from(5, "error");
+        string_t* error_color_str = color_format_color(error_str, TEXT_COLOR_FOREGROUND_LIGHT_RED);
+        string_t* error_color_bold_str = color_format_color(error_color_str, TEXT_COLOR_BOLD);
+
+        string_print(error_color_bold_str);
+        printf(": Failed to run code\n");
+
+        string_destory(error_str);
+        string_destory(error_color_str);
+        string_destory(error_color_bold_str);
+        exit_code = -1;
     }
 
     exit_tokens:
