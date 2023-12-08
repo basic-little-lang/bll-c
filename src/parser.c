@@ -9,14 +9,22 @@
 #include "include/parser.h"
 
 parser_token_t* parser_string_to_keyword(const string_t* str) {
-    if (strcmp(*string_data(str), "print") == 0) {
-        return parser_token_base_init(PARSER_TOKEN_TYPE_PRINT);
+
+    char string[string_size(str) + 1];
+    for (int i = 0; i < string_size(str); i++) {
+        string[i] = *string_get(str, i);
     }
-    if (strcmp(*string_data(str), "copy") == 0) {
-        return parser_token_base_init(PARSER_TOKEN_TYPE_COPY);
+    string[string_size(str)] = '\0';
+
+    parser_token_t* val = NULL;
+
+    if (strcmp("print", string) == 0) {
+        val = parser_token_base_init(PARSER_TOKEN_TYPE_PRINT);
+    } else if (strcmp("copy", string) == 0) {
+        val = parser_token_base_init(PARSER_TOKEN_TYPE_COPY);
     }
 
-    return NULL;
+    return val;
 }
 
 parser_token_t* parser_token_base_init(parser_token_type_t token_type) {
@@ -128,6 +136,18 @@ string_t* parser_token_string(const parser_token_t* parser_token) {
                 return str;
             }
             break;
+        case PARSER_TOKEN_TYPE_PRINT:
+            {
+                string_t* str = string_from(5, "PRINT");
+                return str;
+            }
+            break;
+        case PARSER_TOKEN_TYPE_COPY:
+            {
+                string_t* str = string_from(4, "COPY");
+                return str;
+            }
+            break;
         default:
             {
                 string_t* str = string_init();
@@ -201,7 +221,7 @@ vector_t* parser_convert(const vector_t* direct_tokens) {
                             if (chr == '-') continue;
                             string_add(str, chr);
                         }
-        
+
                         char num_str[string_size(str) + 1];
                         for (int j = 0; j < string_size(str); j++) {
                             num_str[j] = *string_get(str, j);
@@ -229,6 +249,7 @@ vector_t* parser_convert(const vector_t* direct_tokens) {
 
                         vector_destroy(buffer);
                         buffer = vector_init();
+                        string_destory(string);
                     } else {
                         string_destory(string);
                     }
