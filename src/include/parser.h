@@ -2,6 +2,7 @@
 #ifndef _PARSER_H_
 #define _PARSER_H_
 
+#include "vector.h"
 #include "string.h"
 
 typedef enum {
@@ -30,5 +31,7 @@ parser_token_type_t parser_token_type(const parser_token_t* parser_token);
 void* parser_token_data(const parser_token_t* parser_token);
 string_t* parser_token_string(const parser_token_t* parser_token);
 void parser_token_destory(parser_token_t* parser_token);
+
+vector_t* parser_convert(const vector_t* direct_tokens);
 
 #endif
