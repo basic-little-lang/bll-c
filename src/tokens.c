@@ -1,3 +1,4 @@
+#include "include/vector.h"
 #include "include/string.h"
 #include "include/tokens.h"
 #include <stdlib.h>
