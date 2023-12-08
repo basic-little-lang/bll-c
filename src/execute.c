@@ -506,7 +506,11 @@ bool execute_execute(const vector_t* tokens) {
                         next_two_token = vector_get(tokens, next_two_index);
                     }
 
-                    vars_update_or_insert(vars, parser_token_data(next_two_token), *vars_get(vars, parser_token_data(next_token)));
+                    double val = 0;
+                    double* p = vars_get(vars, parser_token_data(next_token));
+                    if (p != NULL) val = *p;
+
+                    vars_update_or_insert(vars, parser_token_data(next_two_token), val);
 
                 }
                 break;
