@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "include/vector.h"
 #include "include/string.h"
 #include "include/parser.h"
 
@@ -136,4 +137,8 @@ void parser_token_destory(parser_token_t* parser_token) {
             free(parser_token);
             break;
     }
+}
+
+vector_t* parser_convert(const vector_t* direct_tokens) {
+    
 }
