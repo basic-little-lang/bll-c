@@ -59,6 +59,15 @@ void vars_update_or_insert(vars_t* vars, const string_t* key_str, double val) {
     vars_insert(vars, key_str, val);
 }
 
+void vars_destory(vars_t* vars) {
+    for (int i = 0; i < vector_size(vars->vals); i++) {
+        free(vector_get(vars->vals, i));
+    }
+    vector_destroy(vars->keys);
+    vector_destroy(vars->vals);
+    free(vars);
+}
+
 bool execute_execute(const vector_t* tokens) {
 
 }
