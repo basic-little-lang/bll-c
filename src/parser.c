@@ -143,7 +143,11 @@ vector_t* parser_convert(const vector_t* direct_tokens) {
     vector_t* parsered_tokens = vector_init();
     vector_t* buffer = vector_init();
 
-    
+    for (int i = 0; i < vector_size(direct_tokens); i++) {
+
+        
+
+    }
 
     vector_destroy(buffer);
     return parsered_tokens;
