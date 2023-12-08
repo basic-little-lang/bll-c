@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "include/color.h"
+#include "include/parser.h"
 #include "include/tokens.h"
 #include "include/vector.h"
 #include "include/string.h"
@@ -78,19 +79,40 @@ int main(int argc, char const *argv[]) {
     }
 
 
+    vector_t* tokens = parser_convert(direct_tokens);
+    if (tokens == NULL) {
+        string_t* error_str = string_from(5, "error");
+        string_t* error_color_str = color_format_color(error_str, TEXT_COLOR_FOREGROUND_LIGHT_RED);
+        string_t* error_color_bold_str = color_format_color(error_color_str, TEXT_COLOR_BOLD);
 
-    for (int i = 0; i < vector_size(direct_tokens); i++) {
-        string_t* str = token_string(vector_get(direct_tokens, i));
+        string_print(error_color_bold_str);
+        printf(": Cannot parse direct tokens into tokens\n");
+
+        string_destory(error_str);
+        string_destory(error_color_str);
+        string_destory(error_color_bold_str);
+        exit_code = -1;
+        goto exit_tokens;
+    }
+
+    for (int i = 0; i < vector_size(tokens); i++) {
+        string_t* str = parser_token_string(vector_get(tokens, i));
         string_println(str);
         string_destory(str);
     }
 
+    exit_tokens:
+
+        for (int i = 0; i < vector_size(tokens); i++) {
+            parser_token_destory(vector_get(tokens, i));
+        }
+        vector_destroy(tokens);
 
 
-    for (int i = 0; i < vector_size(direct_tokens); i++) {
-        token_destory(vector_get(direct_tokens, i));
-    }
-    vector_destroy(direct_tokens);
+        for (int i = 0; i < vector_size(direct_tokens); i++) {
+            token_destory(vector_get(direct_tokens, i));
+        }
+        vector_destroy(direct_tokens);
 
     exit_contents:
 
