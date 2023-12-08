@@ -141,8 +141,10 @@ void parser_token_destory(parser_token_t* parser_token) {
 
 vector_t* parser_convert(const vector_t* direct_tokens) {
     vector_t* parsered_tokens = vector_init();
+    vector_t* buffer = vector_init();
 
     
 
+    vector_destroy(buffer);
     return parsered_tokens;
 }
