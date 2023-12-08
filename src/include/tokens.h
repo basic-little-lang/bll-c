@@ -33,6 +33,6 @@ string_t* token_string(const token_t* token);
 void* token_data(const token_t* token);
 void token_destory(token_t* token);
 
-vector_t* token_tokenize_string(string_t* str);
+vector_t* token_tokenize_string(const string_t* str);
 
 #endif
