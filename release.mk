@@ -1,5 +1,5 @@
 CC = gcc
-CCFLAGS = -c -Wall --std=c99 -lm
+CCFLAGS = -c -Wall --std=c99
 
 LINKER = gcc
 LINKERFLAGS = -Wall --std=c99 -lm -o
