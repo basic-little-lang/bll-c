@@ -3,6 +3,7 @@
 #define _VECTOR_H_
 
 #define VECTOR_STARTING_CAPACITY 4;
+#define VECTOR_ADD_BY 8;
 
 typedef struct {
     int size;
