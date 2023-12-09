@@ -1,8 +1,8 @@
 CC = gcc
-CCFLAGS = -c -Wall --std=c99
+CCFLAGS = -c -Wall --std=c99 -lm
 
 LINKER = gcc
-LINKERFLAGS = -Wall --std=c99 -o
+LINKERFLAGS = -Wall --std=c99 -lm -o
 
 PROG = target
 
