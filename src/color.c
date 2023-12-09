@@ -156,4 +156,7 @@ unsigned short color_code_for_color(text_color_t color) {
             return 4;
     }
 
+
+    return 0;
+
 }
