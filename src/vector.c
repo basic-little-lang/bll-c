@@ -31,9 +31,8 @@ void* vector_get(const vector_t* vec, int index) {
 
 void vector_add(vector_t *restrict vec, void *restrict item) {
     if ((vector_size(vec) + 1) > vector_capacity(vec)) {
-        int old_capacity = vec->capacity;
 
-        vec->capacity = old_capacity + VECTOR_ADD_BY;
+        vec->capacity = vec->capacity * 2;
         vec->data = realloc(vec->data, sizeof(void*) * vec->capacity);
     }
 
