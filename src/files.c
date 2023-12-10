@@ -15,9 +15,9 @@ string_t* files_read_file_to_string(const string_t* file_name) {
 
     string_t* contents = string_init();
 
-    char c;
+    int c;
     while ((c = fgetc(file)) != EOF) {
-        string_add(contents, c);
+        string_add(contents, (char) c);
     }
 
     fclose(file);
